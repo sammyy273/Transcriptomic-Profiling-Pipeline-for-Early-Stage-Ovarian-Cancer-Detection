@@ -3,14 +3,11 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import numpy as np
 
-# Load the cleaned DE results
 df = pd.read_csv("../de/deseq2_clean.csv")
 
-# Set thresholds
 lfc_thresh = 1
 padj_thresh = 0.05
 
-# Add significance category
 df["significance"] = "Not Significant"
 df.loc[(df["padj"] < padj_thresh) & (df["log2FoldChange"] > lfc_thresh), "significance"] = "Upregulated"
 df.loc[(df["padj"] < padj_thresh) & (df["log2FoldChange"] < -lfc_thresh), "significance"] = "Downregulated"
@@ -35,4 +32,4 @@ plt.axvline(x=-1, color="black", linestyle="--")
 plt.axhline(y=-np.log10(padj_thresh), color="black", linestyle="--")
 plt.tight_layout()
 plt.savefig("de/volcano_plot.png", dpi=300)
-print("✅ Volcano plot saved at: de/volcano_plot.png")
+print("Volcano plot saved at: de/volcano_plot.png")
