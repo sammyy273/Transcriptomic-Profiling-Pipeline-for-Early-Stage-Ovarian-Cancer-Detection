@@ -6,7 +6,6 @@ df = pd.read_csv("de/deseq2_results.csv")
 
 print(f"Original rows: {df.shape[0]}")
 
-# Drop the '#NAME?' column if it exists
 if "#NAME?" in df.columns:
     df = df.drop(columns=["#NAME?"])
 
